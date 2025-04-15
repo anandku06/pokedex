@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
+import { getFullPokedexNumber, getPokedexNumber } from "../utils";
 
 const PokeCard = (props) => {
   const { selectedPokemon } = props;
   const [data, setData] = useState(null);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     // if loading, then exit
@@ -27,14 +28,17 @@ const PokeCard = (props) => {
     async function fetchPokemonData() {
       setLoading(true);
       try {
-        const baseURL = "https://pokeapi.co/api/v2/pokemon/" + selectedPokemon;
+        const baseURL = `https://pokeapi.co/api/v2/pokemon/${getPokedexNumber(
+          selectedPokemon
+        )}/`;
+        // const baseURL = `https://pokeapi.co/api/v2/pokemon/`;
 
         const res = await fetch(baseURL);
         const pokemonData = await res.json();
 
         setData(pokemonData);
-
         console.log(pokemonData);
+
         cache[selectedPokemon] = pokemonData;
         localStorage.setItem("pokedex", JSON.stringify(cache));
       } catch (error) {
@@ -45,7 +49,7 @@ const PokeCard = (props) => {
     }
 
     fetchPokemonData();
-  }, [loading, selectedPokemon]);
+  }, [selectedPokemon]);
 
   return <div></div>;
 };
