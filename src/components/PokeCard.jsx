@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { getFullPokedexNumber, getPokedexNumber } from "../utils";
+import TypeCard from "./TypeCard";
 
 const PokeCard = (props) => {
   const { selectedPokemon } = props;
   const [data, setData] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
+  const { name, height, abilities, stats, types, moves, sprites } = data || {};
 
   useEffect(() => {
     // if loading, then exit
@@ -28,12 +30,14 @@ const PokeCard = (props) => {
     async function fetchPokemonData() {
       setLoading(true);
       try {
-        const baseURL = `https://pokeapi.co/api/v2/pokemon/${getPokedexNumber(
-          selectedPokemon
-        )}/`;
-        // const baseURL = `https://pokeapi.co/api/v2/pokemon/`;
+        const baseURL = "https://pokeapi.co/api/v2/";
+        const pokemonURL = `pokemon/${getPokedexNumber(selectedPokemon)}`;
+        const finalURL = baseURL + pokemonURL;
 
-        const res = await fetch(baseURL);
+        const res = await fetch(finalURL);
+        if (!res.ok) {
+          throw new Error("Pokemon not found");
+        }
         const pokemonData = await res.json();
 
         setData(pokemonData);
@@ -51,7 +55,29 @@ const PokeCard = (props) => {
     fetchPokemonData();
   }, [selectedPokemon]);
 
-  return <div></div>;
+  if(loading || !data) {
+    return (
+      <div className="poke-card">
+        <h1>Loading...</h1>
+      </div>
+    );
+  }
+
+  return (
+    <div className="poke-card">
+      <div>
+        <h4>#{getFullPokedexNumber(selectedPokemon)}</h4>
+        <h2>{name}</h2>
+      </div>
+      <div className="type-container">
+        {types.map((type, typeIndex) => {
+          return(
+            <TypeCard key={typeIndex} type={type} />
+          )
+        })}
+      </div>
+    </div>
+  );
 };
 
 export default PokeCard;
