@@ -1,8 +1,12 @@
 import React from 'react'
+import { pokemonTypeColors } from '../utils'
 
-const TypeCard = () => {
+const TypeCard = (props) => {
+  const { type } = props
   return (
-    <div></div>
+    <div className='type-tile' style={{ color : pokemonTypeColors?.[type]?.color, backgroundColor : pokemonTypeColors?.[type]?.background }}>
+      <p>{type}</p>
+    </div>
   )
 }
 
