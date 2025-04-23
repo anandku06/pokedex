@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { getFullPokedexNumber, getPokedexNumber } from "../utils";
 import TypeCard from "./TypeCard";
+import Modal from "./Modal";
 
 const PokeCard = (props) => {
   const { selectedPokemon } = props;
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(false);
   const { name, height, abilities, stats, types, moves, sprites } = data || {};
+  const [skill, setSkill] = useState(null)
 
   const imgLists = Object.keys(sprites || {}).filter((val) => {
     if (!sprites[val] || ["versions", "other"].includes(val)) {
@@ -73,6 +75,16 @@ const PokeCard = (props) => {
 
   return (
     <div className="poke-card">
+      <Modal handleCloseModal={() => {}}>
+        <div>
+          <h6>Name</h6>
+          <h2></h2>
+        </div>
+        <div>
+          <h6>Description</h6>
+          <p>iasgf</p>
+        </div>
+      </Modal>
       <div>
         <h4>#{getFullPokedexNumber(selectedPokemon)}</h4>
         <h2>{name}</h2>
@@ -116,10 +128,14 @@ const PokeCard = (props) => {
       <div className="pokemon-move-grid">
         {moves.map((moveObj, moveIndex) => {
           return (
-            <button className="button-card pokemon-move" key={moveIndex} onClick={() => {}}>
-              <p>{moveObj?.move?.name.replaceAll('-', ' ')}</p>
+            <button
+              className="button-card pokemon-move"
+              key={moveIndex}
+              onClick={() => {}}
+            >
+              <p>{moveObj?.move?.name.replaceAll("-", " ")}</p>
             </button>
-          )
+          );
         })}
       </div>
     </div>
