@@ -8,6 +8,14 @@ const PokeCard = (props) => {
   const [loading, setLoading] = useState(false);
   const { name, height, abilities, stats, types, moves, sprites } = data || {};
 
+  const imgLists = Object.keys(sprites || {}).filter((val) => {
+    if (!sprites[val] || ["versions", "other"].includes(val)) {
+      return false;
+    }
+
+    return true;
+  });
+
   useEffect(() => {
     // if loading, then exit
     if (loading || !localStorage) return;
@@ -55,7 +63,7 @@ const PokeCard = (props) => {
     fetchPokemonData();
   }, [selectedPokemon]);
 
-  if(loading || !data) {
+  if (loading || !data) {
     return (
       <div className="poke-card">
         <h1>Loading...</h1>
@@ -71,9 +79,36 @@ const PokeCard = (props) => {
       </div>
       <div className="type-container">
         {types.map((typeObj, typeIndex) => {
-          return(
-            <TypeCard key={typeIndex} type={typeObj?.type?.name} />
-          )
+          return <TypeCard key={typeIndex} type={typeObj?.type?.name} />;
+        })}
+      </div>
+      <img
+        src={"/pokemon/" + getFullPokedexNumber(selectedPokemon) + ".png"}
+        alt={`${name}-large-img`}
+      />
+      <div className="img-container">
+        {imgLists.map((spriteUrl, spriteIndex) => {
+          const imgUrl = sprites[spriteUrl];
+          return (
+            <img
+              key={spriteIndex}
+              src={imgUrl}
+              alt={`${name}-img-${spriteUrl}`}
+            />
+          );
+        })}
+      </div>
+
+      <h3>Stats</h3>
+      <div className="stats-card">
+        {stats.map((statObj, statIndex) => {
+          const { stat, base_stat } = statObj;
+          return (
+            <div key={statIndex} className="stat-item">
+              <p>{stat?.name.replaceAll("-", " ")}</p>
+              <h4>{base_stat}</h4>
+            </div>
+          );
         })}
       </div>
     </div>
