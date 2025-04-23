@@ -111,6 +111,17 @@ const PokeCard = (props) => {
           );
         })}
       </div>
+
+      <h3>Moves</h3>
+      <div className="pokemon-move-grid">
+        {moves.map((moveObj, moveIndex) => {
+          return (
+            <button className="button-card pokemon-move" key={moveIndex} onClick={() => {}}>
+              <p>{moveObj?.move?.name.replaceAll('-', ' ')}</p>
+            </button>
+          )
+        })}
+      </div>
     </div>
   );
 };
