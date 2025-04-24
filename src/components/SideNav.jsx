@@ -1,7 +1,9 @@
 import React from "react";
 import { first151Pokemon, getFullPokedexNumber } from "../utils/"; // bcz of the default behaviour of export
 
-const SideNav = () => {
+const SideNav = (props) => {
+  const { selectedPokemon, setSelectedPokemon } = props;
+
   return (
     <nav>
       <div className={"header"}>
@@ -10,7 +12,16 @@ const SideNav = () => {
       <input />
       {first151Pokemon.map((pokemon, pokemonIndex) => {
         return (
-          <button key={pokemonIndex} className={"nav-card"}>
+          <button
+            onClick={() => {
+              setSelectedPokemon(pokemonIndex);
+            }}
+            key={pokemonIndex}
+            className={
+              "nav-card" +
+              (pokemonIndex === selectedPokemon ? " nav-card-selected" : "")
+            }
+          >
             <p>{getFullPokedexNumber(pokemonIndex)}</p>
             <p>{pokemon}</p>
           </button>

@@ -36,13 +36,13 @@ const PokeCard = (props) => {
 
     try{
       setLoadingSkill(true)
-      const res = fetch(movesUrl)
-      const movesData = res.json()
+      const res = await fetch(movesUrl)
+      const movesData = await res.json()
       console.log("Fetched move from API", movesData)
 
-      const description = movesData?.flavour_text_entries.filter(val => {
+      const description = movesData?.flavor_text_entries.filter(val => {
         return val.version_group.name = 'firered_leafgreen'
-      })[0]?.flavour_text
+      })[0]?.flavor_text
 
       const skillData = {
         name : move,
@@ -52,7 +52,7 @@ const PokeCard = (props) => {
       c[move] = skillData
       localStorage.setItem('pokemon-moves', JSON.stringify(c))
     } catch (err) {
-
+      console.log(err)
     } finally {
       setLoadingSkill(false)
     }
@@ -125,11 +125,11 @@ const PokeCard = (props) => {
         >
           <div>
             <h6>Name</h6>
-            <h2></h2>
+            <h2>{skill.name.replaceAll('-', " ")}</h2>
           </div>
           <div>
             <h6>Description</h6>
-            <p>iasgf</p>
+            <p>{skill.description}</p>
           </div>
         </Modal>
       )}
@@ -179,9 +179,8 @@ const PokeCard = (props) => {
             <button
               className="button-card pokemon-move"
               key={moveIndex}
-              onClick={() => {
-                setSkill();
-              }}
+              onClick={() => 
+                fetchMoveData(moveObj?.move?.name, moveObj?.move?.url)}
             >
               <p>{moveObj?.move?.name.replaceAll("-", " ")}</p>
             </button>
