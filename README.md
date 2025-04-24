@@ -1,12 +1,92 @@
-# React + Vite
+Here’s a clean and professional **README** structure for your **React Pokedex App**, ideal for showcasing your work on GitHub or in a portfolio:
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+---
 
-Currently, two official plugins are available:
+# 🧩 React Pokedex
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+A simple and intuitive **React-based Pokedex** application that lets users view stats of selected Pokémon along with detailed information about their moves.
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend using TypeScript and enable type-aware lint rules. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## 🚀 Features
+
+- 🔍 Search and select Pokémon from a dropdown or input field.
+- 📊 View base stats (HP, Attack, Defense, etc.).
+- 🧠 See detailed information about each move (type, power, accuracy, and more).
+- 🎨 Clean, responsive UI with smooth transitions.
+- 🗃️ Uses the [PokéAPI](https://pokeapi.co/) for real-time Pokémon data.
+
+---
+
+## 🛠️ Tech Stack
+
+- **React** (with hooks)
+- **Axios** (for API calls)
+- **CSS Modules** or **Styled Components** (based on your preference)
+- **PokéAPI** for Pokémon data
+
+---
+
+## 📦 Installation
+
+```bash
+git clone https://github.com/anandku06/pokedex.git
+cd pokedex
+npm install
+npm start
+```
+
+---
+
+## 📁 Folder Structure
+
+```
+react-pokedex/
+├── public/
+│   └── assets/
+├── src/
+│   ├── components/
+│   │   ├── Header.jsx
+│   │   ├── Modal.jsx
+│   │   └── PokeCard.jsx
+│   │   └── SideNav.jsx
+│   │   └── TypeCard.jsx
+│   ├── App.jsx
+│   ├── fanta.css
+│   ├── index.css
+│   └── main.jsx
+├── package.json
+└── README.md
+```
+
+---
+
+## 🧠 How It Works
+
+1. The user selects a Pokémon.
+2. The app fetches Pokémon data from the PokéAPI.
+3. Displays base stats like HP, Attack, Defense, Speed, etc.
+4. Lists all available moves, and upon selection, shows move details.
+
+---
+
+## 🐞 Known Issues / To-Do
+
+- [ ] Add type filters for Pokémon selection
+- [ ] Paginate move lists for Pokémon with many moves
+- [ ] Add unit tests with Jest and React Testing Library
+
+---
+
+## 🧑‍💻 Author
+
+- **Anand Kumar**  
+  [GitHub](https://github.com/anandku06) | [LinkedIn](https://linkedin.com/in/anand-kumar-023231291)
+
+---
+
+## 🌟 Show Your Support
+
+If you like this project, give it a ⭐ on [GitHub](https://github.com/anandku06/react-pokedex)!
+
+---
