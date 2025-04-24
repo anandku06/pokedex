@@ -1,7 +1,3 @@
-Here’s a clean and professional **README** structure for your **React Pokedex App**, ideal for showcasing your work on GitHub or in a portfolio:
-
----
-
 # 🧩 React Pokedex
 
 A simple and intuitive **React-based Pokedex** application that lets users view stats of selected Pokémon along with detailed information about their moves.
@@ -87,6 +83,4 @@ react-pokedex/
 
 ## 🌟 Show Your Support
 
-If you like this project, give it a ⭐ on [GitHub](https://github.com/anandku06/react-pokedex)!
-
----
+If you like this project, give it a ⭐ on [GitHub](https://github.com/anandku06/pokedex)!
